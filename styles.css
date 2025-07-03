@@ -284,92 +284,57 @@ body::after {
     animation: fadeInUp 1s ease-out 0.3s forwards;
 }
 
-.copy-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent-dark);
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInDown 0.8s ease-out 0.5s forwards;
-}
 
 .main-copy {
     font-family: 'Noto Serif JP', 'Cormorant Garamond', serif;
-    font-size: clamp(24px, 4vw, 32px);
-    font-weight: 200;
     color: var(--text-primary);
-    line-height: 1.8;
-    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .copy-line1 {
     display: block;
-    font-size: clamp(20px, 3.5vw, 28px);
-    letter-spacing: 0.15em;
-    margin-bottom: 10px;
+    font-size: clamp(36px, 5.5vw, 52px);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
     opacity: 0;
     animation: fadeInRight 0.8s ease-out 0.6s forwards;
+    color: var(--text-primary);
+    text-shadow: 
+        0 4px 16px rgba(252, 224, 229, 0.6),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    line-height: 1.3;
+}
+
+.copy-line1::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-dark), var(--accent-color), transparent);
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+    box-shadow: 0 2px 8px rgba(245, 179, 192, 0.4);
 }
 
 .copy-line2 {
     display: block;
-    font-size: clamp(26px, 4.5vw, 36px);
+    font-size: clamp(22px, 3.5vw, 28px);
     font-weight: 300;
-    letter-spacing: 0.08em;
-    opacity: 0;
-    animation: fadeInLeft 0.8s ease-out 0.8s forwards;
-    position: relative;
-    white-space: nowrap;
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 4px;
-}
-
-.copy-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 6vw, 56px);
-    font-weight: 500;
-    color: var(--accent-dark);
-    margin: 0 8px;
-    position: relative;
-    display: inline-block;
-    vertical-align: baseline;
-    line-height: 0.8;
-    letter-spacing: 0.05em;
-    text-shadow: 
-        0 2px 4px rgba(245, 179, 192, 0.3),
-        0 4px 8px rgba(245, 179, 192, 0.2);
-    animation: numberPulse 3s ease-in-out infinite;
-}
-
-.copy-number::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(252, 224, 229, 0.4) 0%, transparent 70%);
-    filter: blur(20px);
-    z-index: -1;
-    animation: numberGlow 3s ease-in-out infinite;
-}
-
-.copy-number::after {
-    content: '年';
-    position: absolute;
-    right: -28px;
-    bottom: 0;
-    font-size: 0.5em;
-    font-weight: 300;
-    color: var(--text-primary);
     letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease-out 0.9s forwards;
+    position: relative;
+    color: var(--text-secondary);
+    margin-top: 28px;
 }
+
 
 @keyframes numberPulse {
     0%, 100% {
@@ -399,7 +364,8 @@ body::after {
     justify-content: center;
     gap: 15px;
     opacity: 0;
-    animation: fadeIn 1s ease-out 1s forwards;
+    animation: fadeIn 1s ease-out 1.4s forwards;
+    margin-top: 40px;
 }
 
 .deco-line {
