@@ -36,6 +36,16 @@ body {
     letter-spacing: 0.02em;
 }
 
+/* タッチデバイスではデフォルトカーソル */
+@media (hover: none) and (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
+    .cursor, .cursor-follower {
+        display: none;
+    }
+}
+
 /* 背景の水彩エフェクト */
 body::before {
     content: '';
@@ -93,30 +103,45 @@ body::after {
 
 /* カスタムカーソル */
 .cursor {
-    position: fixed;
-    width: 24px;
-    height: 24px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--accent-dark);
-    background: rgba(252, 224, 229, 0.1);
+    background: rgba(252, 224, 229, 0.2);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: all 0.15s ease;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px rgba(252, 224, 229, 0.5);
+    box-shadow: 
+        0 0 20px rgba(252, 224, 229, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    will-change: left, top;
 }
 
 .cursor-follower {
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    background: radial-gradient(circle, rgba(252, 224, 229, 0.3) 0%, transparent 70%);
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(252, 224, 229, 0.4) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
-    transition: all 0.3s ease;
     transform: translate(-50%, -50%);
-    filter: blur(3px);
+    filter: blur(4px);
+    transition: opacity 0.3s ease;
+    will-change: left, top;
+}
+
+.cursor.cursor-hover {
+    border-color: var(--accent-color);
+    background: rgba(252, 224, 229, 0.4);
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+.cursor-follower.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    background: radial-gradient(circle, rgba(252, 224, 229, 0.6) 0%, transparent 70%);
 }
 
 #app {

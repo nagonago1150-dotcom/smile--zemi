@@ -14,31 +14,56 @@ function initCursor() {
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
     
+    // マウス位置を記録
     document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
+        mouseX = e.pageX;
+        mouseY = e.pageY;
     });
     
-    // フォロワーのスムーズな追従
-    setInterval(() => {
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
+    // カーソルのアニメーション
+    function animateCursor() {
+        // メインカーソル（遅延なし）
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+        
+        // フォロワー（スムーズな追従）
+        const dx = mouseX - followerX;
+        const dy = mouseY - followerY;
+        followerX += dx * 0.15;
+        followerY += dy * 0.15;
         cursorFollower.style.left = followerX + 'px';
         cursorFollower.style.top = followerY + 'px';
-    }, 20);
+        
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
     
     // ホバー時のカーソル変化
-    document.querySelectorAll('.option-button, button').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.2)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
+    const interactiveElements = '.option-button, button, a, .product-image';
+    
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.matches(interactiveElements)) {
+            cursor.classList.add('cursor-hover');
+            cursorFollower.classList.add('cursor-hover');
+        }
+    });
+    
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.matches(interactiveElements)) {
+            cursor.classList.remove('cursor-hover');
+            cursorFollower.classList.remove('cursor-hover');
+        }
+    });
+    
+    // マウスがウィンドウから出た時
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
     });
 }
 
@@ -223,16 +248,8 @@ function showLoading() {
 }
 
 function updateCursorEvents() {
-    document.querySelectorAll('.option-button').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            document.querySelector('.cursor').style.transform = 'translate(-50%, -50%) scale(1.5)';
-            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1.2)';
-        });
-        el.addEventListener('mouseleave', () => {
-            document.querySelector('.cursor').style.transform = 'translate(-50%, -50%) scale(1)';
-            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
+    // 新しい要素のホバーイベントは、既存のイベントリスナーで自動的に処理されるため、
+    // この関数は不要になりました
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -266,15 +283,15 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('mousemove', function(e) {
             if (!this.classList.contains('selected')) {
                 const rect = this.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 5;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 5;
-                this.style.transform = `translateY(-3px) rotateX(${-y}deg) rotateY(${x}deg)`;
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                this.style.transform = `translateY(-3px) translateX(${x}px)`;
             }
         });
         
         button.addEventListener('mouseleave', function() {
             if (!this.classList.contains('selected')) {
-                this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                this.style.transform = 'translateY(0) translateX(0)';
             }
         });
     });
