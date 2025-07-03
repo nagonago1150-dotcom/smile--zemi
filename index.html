@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINK+U | あなたの肌悩みに、海洋研究82年の答えを。</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <section id="section1" class="section active">
+            <div class="container">
+                <div class="main-visual">
+                    <img src="public/LinkU.PNG" alt="LINK+U トライアルセット" class="product-image">
+                </div>
+                <h1 class="main-copy">あなたの肌悩みに、海洋研究82年の答えを。</h1>
+                <div class="question-area">
+                    <h2 class="question-title">Q1. 今、一番気になる肌の変化は？</h2>
+                    <div class="options">
+                        <button class="option-button" data-answer="A" onclick="selectAnswer(1, 'A')">
+                            <span class="option-label">ハリ不足・ゆるみ</span>
+                        </button>
+                        <button class="option-button" data-answer="B" onclick="selectAnswer(1, 'B')">
+                            <span class="option-label">乾燥・カサつき</span>
+                        </button>
+                        <button class="option-button" data-answer="C" onclick="selectAnswer(1, 'C')">
+                            <span class="option-label">くすみ・にごり感</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="section">
+            <div class="container">
+                <div class="progress-bar">
+                    <span class="progress-text">Q2 / 全3問</span>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 66.67%;"></div>
+                    </div>
+                </div>
+                <div class="question-area">
+                    <h2 class="question-title">Q2. スキンケアに本当に求めることは？</h2>
+                    <div class="options">
+                        <button class="option-button" data-answer="A" onclick="selectAnswer(2, 'A')">
+                            <span class="option-label">科学に裏付けられた手応え</span>
+                        </button>
+                        <button class="option-button" data-answer="B" onclick="selectAnswer(2, 'B')">
+                            <span class="option-label">肌へのやさしさと安心感</span>
+                        </button>
+                        <button class="option-button" data-answer="C" onclick="selectAnswer(2, 'C')">
+                            <span class="option-label">根本からケアする本質的な力</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="section">
+            <div class="container">
+                <div class="progress-bar">
+                    <span class="progress-text">Q3 / 全3問</span>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="question-area">
+                    <h2 class="question-title">Q3. あなたが目指す、理想の肌は？</h2>
+                    <div class="options">
+                        <button class="option-button" data-answer="A" onclick="selectAnswer(3, 'A')">
+                            <span class="option-label">弾むようなハリ肌</span>
+                        </button>
+                        <button class="option-button" data-answer="B" onclick="selectAnswer(3, 'B')">
+                            <span class="option-label">うるおいに満ちたツヤ肌</span>
+                        </button>
+                        <button class="option-button" data-answer="C" onclick="selectAnswer(3, 'C')">
+                            <span class="option-label">澄みわたる透明肌</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="loading-section" class="section">
+            <div class="container">
+                <div class="loading-content">
+                    <p class="thank-you">ありがとうございます。</p>
+                    <p class="leading-text">では、そんなあなたへ...</p>
+                    <div class="loading-animation">
+                        <div class="ripple-container">
+                            <div class="ripple"></div>
+                            <div class="ripple"></div>
+                            <div class="ripple"></div>
+                        </div>
+                    </div>
+                    <p class="loading-text">最適なご提案を準備しています...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
