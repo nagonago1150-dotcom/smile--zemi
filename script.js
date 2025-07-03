@@ -39,7 +39,7 @@ function initCursor() {
     animateCursor();
     
     // ホバー時のカーソル変化
-    const interactiveElements = '.option-button, button, a, .product-image';
+    const interactiveElements = '.option-button, button, a, .product-image, .product-link';
     
     document.addEventListener('mouseover', (e) => {
         if (e.target.matches(interactiveElements)) {
