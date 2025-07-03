@@ -904,6 +904,11 @@ body::after {
         letter-spacing: 0.02em;
     }
     
+    #section3 .question-title {
+        transform: scale(0.94);
+        letter-spacing: 0.03em;
+    }
+    
     #section2 .question-title {
         white-space: normal;
         transform: scale(1);
@@ -951,7 +956,8 @@ body::after {
     }
     
     #section3 .question-title {
-        transform: scale(0.95);
+        transform: scale(0.9);
+        letter-spacing: 0.02em;
     }
     
     #section2 .question-title {
@@ -975,6 +981,15 @@ body::after {
 }
 
 @media (max-width: 380px) {
+    #section1 .question-title {
+        transform: scale(0.85);
+    }
+    
+    #section3 .question-title {
+        transform: scale(0.87);
+        letter-spacing: 0.01em;
+    }
+    
     .thank-you {
         font-size: 20px;
         transform: scale(0.85);
