@@ -252,45 +252,179 @@ body::after {
         0 0 150px rgba(252, 224, 229, 0.6);
 }
 
-.main-copy {
-    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
-    font-size: clamp(32px, 5vw, 42px);
-    font-weight: 300;
+.main-copy-container {
     text-align: center;
     margin-bottom: 70px;
-    color: var(--text-primary);
-    letter-spacing: 0.12em;
-    line-height: 1.6;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.3s forwards;
-    position: relative;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.main-copy::after {
+.copy-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out 0.5s forwards;
+}
+
+.main-copy {
+    font-family: 'Noto Serif JP', 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 200;
+    color: var(--text-primary);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.copy-line1 {
+    display: block;
+    font-size: clamp(20px, 3.5vw, 28px);
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInRight 0.8s ease-out 0.6s forwards;
+}
+
+.copy-line2 {
+    display: block;
+    font-size: clamp(26px, 4.5vw, 36px);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease-out 0.8s forwards;
+    position: relative;
+}
+
+.copy-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5.5vw, 48px);
+    font-weight: 600;
+    color: var(--accent-dark);
+    margin: 0 4px;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(180deg, var(--accent-dark), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    animation: numberPulse 3s ease-in-out infinite;
+}
+
+@keyframes numberPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+    }
+}
+
+.copy-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1s forwards;
+}
+
+.deco-line {
+    display: inline-block;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.deco-line::after {
     content: '';
     position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: var(--accent-gradient);
-    border-radius: 2px;
-    animation: lineExpand 1s ease-out 0.8s both;
-    box-shadow: 0 0 10px rgba(252, 224, 229, 0.5);
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: lineShine 3s ease-in-out infinite;
 }
 
-@keyframes lineExpand {
+@keyframes lineShine {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+.deco-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(245, 179, 192, 0.6);
+    animation: dotGlow 2s ease-in-out infinite;
+}
+
+@keyframes dotGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(245, 179, 192, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(245, 179, 192, 0.9);
+    }
+}
+
+@keyframes fadeInDown {
     from {
-        width: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
         opacity: 0;
     }
     to {
-        width: 80px;
         opacity: 1;
     }
 }
+
 
 .progress-bar {
     margin-bottom: 60px;
