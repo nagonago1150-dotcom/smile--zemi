@@ -51,10 +51,10 @@ function selectAnswer(questionNumber, answer) {
     // 他のボタンをフェードアウト
     allButtons.forEach(btn => {
         if (btn !== button) {
-            btn.style.opacity = '0.3';
-            btn.style.transform = 'scale(0.9) translateY(10px)';
+            btn.style.opacity = '0.4';
+            btn.style.transform = 'scale(0.98)';
             btn.style.pointerEvents = 'none';
-            btn.style.filter = 'blur(2px)';
+            btn.style.filter = 'none';
         }
     });
     
@@ -62,8 +62,8 @@ function selectAnswer(questionNumber, answer) {
     button.classList.add('selected');
     button.style.background = 'var(--accent-gradient)';
     button.style.color = '#fff';
-    button.style.transform = 'scale(1.08) translateY(-8px)';
-    button.style.boxShadow = '0 20px 40px rgba(245, 179, 192, 0.4)';
+    button.style.transform = 'translateY(-2px)';
+    button.style.boxShadow = '0 8px 20px rgba(245, 179, 192, 0.3)';
     
     // リップルエフェクトを追加
     createRipple(button, event);
@@ -106,8 +106,8 @@ function showNextQuestion() {
     const currentSection = document.querySelector('.section.active');
     const container = currentSection.querySelector('.container');
     
-    // コンテナを3D回転させながらフェードアウト
-    container.style.transform = 'rotateY(-90deg) scale(0.8)';
+    // コンテナをフェードアウト
+    container.style.transform = 'translateX(-20px)';
     container.style.opacity = '0';
     currentSection.classList.add('fade-out');
     
@@ -130,27 +130,27 @@ function showNextQuestion() {
         
         nextSection.classList.add('active');
         
-        // 新しいセクションのコンテナを3D回転させながらフェードイン
+        // 新しいセクションのコンテナをフェードイン
         const newContainer = nextSection.querySelector('.container');
-        newContainer.style.transform = 'rotateY(90deg) scale(0.8)';
+        newContainer.style.transform = 'translateX(20px)';
         newContainer.style.opacity = '0';
         
         setTimeout(() => {
-            newContainer.style.transform = 'rotateY(0) scale(1)';
+            newContainer.style.transform = 'translateX(0)';
             newContainer.style.opacity = '1';
-            newContainer.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            newContainer.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         }, 100);
         
         // ボタンのスタガーアニメーション
         const buttons = nextSection.querySelectorAll('.option-button');
         buttons.forEach((btn, index) => {
             btn.style.opacity = '0';
-            btn.style.transform = 'translateX(-50px) translateY(20px) rotateY(-20deg)';
+            btn.style.transform = 'translateY(20px)';
             setTimeout(() => {
                 btn.style.opacity = '1';
-                btn.style.transform = 'translateX(0) translateY(0) rotateY(0)';
-                btn.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-            }, 300 + index * 150);
+                btn.style.transform = 'translateY(0)';
+                btn.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }, 200 + index * 100);
         });
         
         // カーソルイベントを再設定
@@ -266,15 +266,15 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('mousemove', function(e) {
             if (!this.classList.contains('selected')) {
                 const rect = this.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
-                this.style.transform = `translateY(-4px) scale(1.02) rotateX(${-y}deg) rotateY(${x}deg)`;
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 5;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 5;
+                this.style.transform = `translateY(-3px) rotateX(${-y}deg) rotateY(${x}deg)`;
             }
         });
         
         button.addEventListener('mouseleave', function() {
             if (!this.classList.contains('selected')) {
-                this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+                this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
             }
         });
     });

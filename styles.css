@@ -22,7 +22,7 @@
 }
 
 body {
-    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans JP', 'Cormorant Garamond', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #f0f4f8;
     color: var(--text-primary);
     line-height: 1.8;
@@ -30,6 +30,8 @@ body {
     min-height: 100vh;
     position: relative;
     cursor: none;
+    font-weight: 300;
+    letter-spacing: 0.02em;
 }
 
 body::before {
@@ -118,16 +120,12 @@ body::after {
 @keyframes sectionReveal {
     0% {
         opacity: 0;
-        transform: translateZ(-200px) rotateY(25deg) scale(0.9);
-        filter: blur(20px);
-    }
-    50% {
-        transform: translateZ(-50px) rotateY(10deg) scale(0.95);
-        filter: blur(10px);
+        transform: translateY(30px) scale(0.98);
+        filter: blur(8px);
     }
     100% {
         opacity: 1;
-        transform: translateZ(0) rotateY(0) scale(1);
+        transform: translateY(0) scale(1);
         filter: blur(0);
     }
 }
@@ -209,17 +207,18 @@ body::after {
 }
 
 .main-copy {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(28px, 4.5vw, 36px);
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    font-size: clamp(32px, 5vw, 42px);
     font-weight: 300;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
     color: var(--text-primary);
-    letter-spacing: 0.08em;
-    line-height: 1.8;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.3s forwards;
     position: relative;
+    text-transform: none;
 }
 
 .main-copy::after {
@@ -253,12 +252,13 @@ body::after {
 .progress-text {
     display: block;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-secondary);
     margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: none;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .progress-track {
@@ -327,13 +327,13 @@ body::after {
 
 .question-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(24px, 3.5vw, 30px);
-    font-weight: 400;
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 300;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     color: var(--text-primary);
-    letter-spacing: 0.05em;
-    line-height: 1.7;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
     position: relative;
     z-index: 1;
 }
@@ -347,38 +347,38 @@ body::after {
 }
 
 .option-button {
-    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    background: linear-gradient(145deg, #ffffff, #f8fafb);
     backdrop-filter: var(--backdrop-blur);
-    border: none;
-    border-radius: 80px;
-    padding: 28px 50px;
-    font-size: 17px;
-    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 60px;
+    padding: 26px 48px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Noto Sans JP', sans-serif;
     color: var(--text-primary);
     cursor: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     text-align: center;
     position: relative;
     overflow: hidden;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
+    animation: fadeInUp 0.6s ease-out forwards;
     box-shadow: 
-        8px 8px 20px rgba(0, 0, 0, 0.08),
-        -8px -8px 20px rgba(255, 255, 255, 0.9),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .option-button:nth-child(1) {
-    animation-delay: 0.5s;
+    animation-delay: 0.3s;
 }
 
 .option-button:nth-child(2) {
-    animation-delay: 0.65s;
+    animation-delay: 0.4s;
 }
 
 .option-button:nth-child(3) {
-    animation-delay: 0.8s;
+    animation-delay: 0.5s;
 }
 
 .option-button::before {
@@ -396,11 +396,12 @@ body::after {
 }
 
 .option-button:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-3px);
     box-shadow: 
-        12px 12px 30px rgba(0, 0, 0, 0.1),
-        -12px -12px 30px rgba(255, 255, 255, 0.95),
-        0 20px 40px rgba(245, 179, 192, 0.2);
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.04);
+    border-color: var(--accent-dark);
+    background: linear-gradient(145deg, #ffffff, #fce0e5);
 }
 
 .option-button:hover::before {
@@ -430,23 +431,25 @@ body::after {
 }
 
 .thank-you {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 32px;
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+    font-size: 36px;
     font-weight: 300;
     color: var(--text-primary);
     margin-bottom: 30px;
     opacity: 0;
-    animation: fadeInUp 1.2s ease-out forwards;
-    letter-spacing: 0.08em;
+    animation: fadeInUp 1s ease-out forwards;
+    letter-spacing: 0.1em;
 }
 
 .leading-text {
-    font-size: 22px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
     color: var(--text-secondary);
     margin-bottom: 80px;
     opacity: 0;
-    animation: fadeInUp 1.2s ease-out 0.3s forwards;
-    letter-spacing: 0.05em;
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    letter-spacing: 0.08em;
 }
 
 .loading-animation {
@@ -528,19 +531,19 @@ body::after {
 }
 
 .fade-out {
-    animation: fadeOutRotate 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation: fadeOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-@keyframes fadeOutRotate {
+@keyframes fadeOut {
     from {
         opacity: 1;
-        transform: translateZ(0) rotateY(0) scale(1);
+        transform: translateX(0);
         filter: blur(0);
     }
     to {
         opacity: 0;
-        transform: translateZ(-200px) rotateY(-25deg) scale(0.9);
-        filter: blur(20px);
+        transform: translateX(-20px);
+        filter: blur(5px);
     }
 }
 
