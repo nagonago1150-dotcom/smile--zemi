@@ -927,6 +927,21 @@ body::after {
     }
 }
 
+@media (max-width: 480px) {
+    .question-title {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+    
+    #section2 .question-title {
+        white-space: normal;
+    }
+    
+    .question-area {
+        padding: 30px 10px;
+    }
+}
+
 @media (max-height: 800px) {
     .section {
         padding: 30px 0 50px 0;
