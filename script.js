@@ -2,6 +2,46 @@ let currentQuestion = 1;
 const answers = {};
 const redirectUrl = 'https://link-u-cosme.com/lp?u=t67010_002_cie_ad_fb_002&sid=DfQ1TZ_HgDFZ_i3q&ct_bM3ce882r12M5da5=4576.288.365.DfQ1TZ_HgDFZ_i3q.365.DfQ1TZ_HgDFZ_i3q.DfQ1TZ_HgDFZ_i3q';
 
+// カスタムカーソルの初期化
+function initCursor() {
+    const cursor = document.createElement('div');
+    const cursorFollower = document.createElement('div');
+    cursor.className = 'cursor';
+    cursorFollower.className = 'cursor-follower';
+    document.body.appendChild(cursor);
+    document.body.appendChild(cursorFollower);
+    
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+    
+    // フォロワーのスムーズな追従
+    setInterval(() => {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+    }, 20);
+    
+    // ホバー時のカーソル変化
+    document.querySelectorAll('.option-button, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.2)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    });
+}
+
 function selectAnswer(questionNumber, answer) {
     answers[`question${questionNumber}`] = answer;
     
@@ -11,9 +51,10 @@ function selectAnswer(questionNumber, answer) {
     // 他のボタンをフェードアウト
     allButtons.forEach(btn => {
         if (btn !== button) {
-            btn.style.opacity = '0.5';
-            btn.style.transform = 'scale(0.95)';
+            btn.style.opacity = '0.3';
+            btn.style.transform = 'scale(0.9) translateY(10px)';
             btn.style.pointerEvents = 'none';
+            btn.style.filter = 'blur(2px)';
         }
     });
     
@@ -21,10 +62,16 @@ function selectAnswer(questionNumber, answer) {
     button.classList.add('selected');
     button.style.background = 'var(--accent-gradient)';
     button.style.color = '#fff';
-    button.style.transform = 'scale(1.05)';
+    button.style.transform = 'scale(1.08) translateY(-8px)';
+    button.style.boxShadow = '0 20px 40px rgba(245, 179, 192, 0.4)';
     
     // リップルエフェクトを追加
     createRipple(button, event);
+    
+    // 振動フィードバック（対応デバイスのみ）
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
     
     setTimeout(() => {
         if (questionNumber < 3) {
@@ -32,7 +79,7 @@ function selectAnswer(questionNumber, answer) {
         } else {
             showLoading();
         }
-    }, 600);
+    }, 800);
 }
 
 function createRipple(button, event) {
@@ -57,6 +104,11 @@ function createRipple(button, event) {
 
 function showNextQuestion() {
     const currentSection = document.querySelector('.section.active');
+    const container = currentSection.querySelector('.container');
+    
+    // コンテナを3D回転させながらフェードアウト
+    container.style.transform = 'rotateY(-90deg) scale(0.8)';
+    container.style.opacity = '0';
     currentSection.classList.add('fade-out');
     
     setTimeout(() => {
@@ -64,28 +116,56 @@ function showNextQuestion() {
         currentQuestion++;
         const nextSection = document.getElementById(`section${currentQuestion}`);
         
+        // 質問番号を追加
+        addQuestionNumber(nextSection, currentQuestion);
+        
         // プログレスバーのアニメーション
         const progressFill = nextSection.querySelector('.progress-fill');
         if (progressFill) {
             progressFill.style.width = '0%';
             setTimeout(() => {
                 progressFill.style.width = currentQuestion === 2 ? '66.67%' : '100%';
-            }, 100);
+            }, 200);
         }
         
         nextSection.classList.add('active');
+        
+        // 新しいセクションのコンテナを3D回転させながらフェードイン
+        const newContainer = nextSection.querySelector('.container');
+        newContainer.style.transform = 'rotateY(90deg) scale(0.8)';
+        newContainer.style.opacity = '0';
+        
+        setTimeout(() => {
+            newContainer.style.transform = 'rotateY(0) scale(1)';
+            newContainer.style.opacity = '1';
+            newContainer.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        }, 100);
         
         // ボタンのスタガーアニメーション
         const buttons = nextSection.querySelectorAll('.option-button');
         buttons.forEach((btn, index) => {
             btn.style.opacity = '0';
-            btn.style.transform = 'translateY(20px)';
+            btn.style.transform = 'translateX(-50px) translateY(20px) rotateY(-20deg)';
             setTimeout(() => {
                 btn.style.opacity = '1';
-                btn.style.transform = 'translateY(0)';
-            }, 100 + index * 100);
+                btn.style.transform = 'translateX(0) translateY(0) rotateY(0)';
+                btn.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            }, 300 + index * 150);
         });
-    }, 500);
+        
+        // カーソルイベントを再設定
+        updateCursorEvents();
+    }, 600);
+}
+
+function addQuestionNumber(section, number) {
+    const existingNumber = section.querySelector('.question-number');
+    if (!existingNumber) {
+        const numberEl = document.createElement('div');
+        numberEl.className = 'question-number';
+        numberEl.textContent = number;
+        section.appendChild(numberEl);
+    }
 }
 
 function showLoading() {
@@ -101,54 +181,112 @@ function showLoading() {
         const elements = loadingSection.querySelectorAll('.thank-you, .leading-text, .loading-text');
         elements.forEach((el, index) => {
             el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
             setTimeout(() => {
                 el.style.opacity = '1';
-            }, 200 + index * 300);
+                el.style.transform = 'translateY(0)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }, 200 + index * 400);
+        });
+        
+        // 波紋アニメーションの強化
+        const ripples = loadingSection.querySelectorAll('.ripple');
+        ripples.forEach((ripple, index) => {
+            ripple.style.animationDelay = index * 1.5 + 's';
         });
         
         // リダイレクト
         setTimeout(() => {
-            window.location.href = redirectUrl;
-        }, 3500);
-    }, 500);
+            // フェードトゥホワイト
+            const fadeOverlay = document.createElement('div');
+            fadeOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                opacity: 0;
+                z-index: 9999;
+                transition: opacity 1s ease;
+            `;
+            document.body.appendChild(fadeOverlay);
+            
+            setTimeout(() => {
+                fadeOverlay.style.opacity = '1';
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1000);
+            }, 100);
+        }, 3000);
+    }, 600);
+}
+
+function updateCursorEvents() {
+    document.querySelectorAll('.option-button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            document.querySelector('.cursor').style.transform = 'translate(-50%, -50%) scale(1.5)';
+            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1.2)';
+        });
+        el.addEventListener('mouseleave', () => {
+            document.querySelector('.cursor').style.transform = 'translate(-50%, -50%) scale(1)';
+            document.querySelector('.cursor-follower').style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 初期アニメーション
+    // カスタムカーソルの初期化
+    if (window.matchMedia('(pointer: fine)').matches) {
+        initCursor();
+    } else {
+        document.body.style.cursor = 'auto';
+    }
+    
+    // 最初の質問番号を追加
     const firstSection = document.querySelector('.section.active');
+    addQuestionNumber(firstSection, 1);
+    
+    // 初期アニメーション
     const elements = firstSection.querySelectorAll('.main-visual, .main-copy, .question-area');
     elements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        el.style.transform = 'translateY(50px) scale(0.95)';
         setTimeout(() => {
             el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        }, 100 + index * 200);
+            el.style.transform = 'translateY(0) scale(1)';
+            el.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        }, 200 + index * 300);
     });
     
     // ボタンのマイクロインタラクション
     const buttons = document.querySelectorAll('.option-button');
     buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px) scale(1.02)';
+        // マウスの動きに反応する微細な動き
+        button.addEventListener('mousemove', function(e) {
+            if (!this.classList.contains('selected')) {
+                const rect = this.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+                this.style.transform = `translateY(-4px) scale(1.02) rotateX(${-y}deg) rotateY(${x}deg)`;
+            }
         });
         
         button.addEventListener('mouseleave', function() {
             if (!this.classList.contains('selected')) {
-                this.style.transform = 'translateY(0) scale(1)';
+                this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
             }
         });
+    });
+    
+    // パララックスエフェクト
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
         
-        // タッチデバイス対応
-        button.addEventListener('touchstart', function() {
-            this.style.transform = 'translateY(-2px) scale(1.01)';
-        });
-        
-        button.addEventListener('touchend', function() {
-            if (!this.classList.contains('selected')) {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
+        document.querySelectorAll('.particle').forEach((particle, index) => {
+            const speed = (index + 1) * 0.5;
+            particle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
         });
     });
     
@@ -161,12 +299,13 @@ function createParticles() {
     particlesContainer.className = 'particles';
     document.body.appendChild(particlesContainer);
     
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (20 + Math.random() * 20) + 's';
+        particle.style.animationDelay = Math.random() * 30 + 's';
+        particle.style.animationDuration = (30 + Math.random() * 30) + 's';
+        particle.style.width = particle.style.height = (2 + Math.random() * 4) + 'px';
         particlesContainer.appendChild(particle);
     }
 }
@@ -174,20 +313,16 @@ function createParticles() {
 // CSSスタイルを動的に追加
 const style = document.createElement('style');
 style.textContent = `
-    .fade-out {
-        animation: fadeOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    }
-    
     .selected {
-        animation: selectedPulse 0.6s ease-out;
+        animation: selectedPulse 0.8s ease-out;
     }
     
     @keyframes selectedPulse {
         0% {
-            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0.7);
+            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0.8);
         }
         70% {
-            box-shadow: 0 0 0 20px rgba(245, 179, 192, 0);
+            box-shadow: 0 0 0 30px rgba(245, 179, 192, 0);
         }
         100% {
             box-shadow: 0 0 0 0 rgba(245, 179, 192, 0);
@@ -197,52 +332,15 @@ style.textContent = `
     .ripple-effect {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
         transform: scale(0);
-        animation: rippleSpread 1s ease-out;
+        animation: rippleSpread 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         pointer-events: none;
     }
     
     @keyframes rippleSpread {
         to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-    
-    .particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-    }
-    
-    .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: var(--accent-color);
-        border-radius: 50%;
-        opacity: 0.3;
-        animation: float linear infinite;
-    }
-    
-    @keyframes float {
-        from {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-        }
-        10% {
-            opacity: 0.3;
-        }
-        90% {
-            opacity: 0.3;
-        }
-        to {
-            transform: translateY(-100vh) rotate(360deg);
+            transform: scale(5);
             opacity: 0;
         }
     }
