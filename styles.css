@@ -892,15 +892,27 @@ body::after {
     }
     
     .question-title {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 30px;
-        white-space: normal;
+        white-space: nowrap;
         line-height: 1.5;
+        padding: 0 10px;
+    }
+    
+    #section1 .question-title {
+        transform: scale(0.92);
+        letter-spacing: 0.02em;
+    }
+    
+    #section2 .question-title {
+        white-space: normal;
+        transform: scale(1);
     }
     
     .question-area {
-        padding: 35px 25px;
+        padding: 35px 20px;
         border-radius: 30px;
+        overflow: hidden;
     }
     
     .option-button {
@@ -929,16 +941,25 @@ body::after {
 
 @media (max-width: 480px) {
     .question-title {
-        font-size: 15px;
+        font-size: 14px;
         white-space: nowrap;
+    }
+    
+    #section1 .question-title {
+        transform: scale(0.88);
+    }
+    
+    #section3 .question-title {
+        transform: scale(0.95);
     }
     
     #section2 .question-title {
         white-space: normal;
+        transform: scale(1);
     }
     
     .question-area {
-        padding: 30px 10px;
+        padding: 30px 15px;
     }
 }
 
