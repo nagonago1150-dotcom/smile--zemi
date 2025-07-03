@@ -153,12 +153,10 @@ body::after {
 .section {
     display: none;
     min-height: 100vh;
-    height: 100vh;
-    padding: 20px 0;
+    padding: 40px 0 60px 0;
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    overflow-y: auto;
 }
 
 .section.active {
@@ -188,10 +186,6 @@ body::after {
     margin: 0 auto;
     padding: 0 40px;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 /* 質問番号表示 */
@@ -222,13 +216,13 @@ body::after {
 
 .main-visual {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     position: relative;
 }
 
 .product-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     height: auto;
     border-radius: 30px;
     box-shadow: 
@@ -285,7 +279,7 @@ body::after {
 
 .main-copy-container {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.3s forwards;
 }
@@ -538,7 +532,7 @@ body::after {
 .question-area {
     background: var(--glass-gradient);
     backdrop-filter: var(--backdrop-blur);
-    padding: 40px;
+    padding: 50px;
     border-radius: 40px;
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.05),
@@ -855,7 +849,7 @@ body::after {
 
 @media (max-width: 768px) {
     .section {
-        padding: 15px 0;
+        padding: 30px 0 50px 0;
     }
     
     .container {
@@ -869,15 +863,15 @@ body::after {
     }
     
     .product-image {
-        max-width: 280px;
+        max-width: 350px;
     }
     
     .main-visual {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
     
     .main-copy-container {
-        margin-bottom: 25px;
+        margin-bottom: 40px;
     }
     
     .copy-line1 {
@@ -900,17 +894,17 @@ body::after {
     }
     
     .question-area {
-        padding: 30px 20px;
+        padding: 35px 25px;
         border-radius: 30px;
     }
     
     .option-button {
-        padding: 18px 30px;
-        font-size: 14px;
+        padding: 20px 35px;
+        font-size: 15px;
     }
     
     .options {
-        gap: 15px;
+        gap: 16px;
     }
     
     .thank-you {
@@ -924,7 +918,7 @@ body::after {
 
 @media (max-height: 800px) {
     .section {
-        padding: 10px 0;
+        padding: 30px 0 50px 0;
     }
     
     .product-image {
