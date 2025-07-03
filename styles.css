@@ -297,32 +297,74 @@ body::after {
     opacity: 0;
     animation: fadeInLeft 0.8s ease-out 0.8s forwards;
     position: relative;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
 }
 
 .copy-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5.5vw, 48px);
-    font-weight: 600;
+    font-size: clamp(40px, 6vw, 56px);
+    font-weight: 500;
     color: var(--accent-dark);
-    margin: 0 4px;
+    margin: 0 8px;
     position: relative;
     display: inline-block;
-    background: linear-gradient(180deg, var(--accent-dark), var(--accent-color));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
+    vertical-align: baseline;
+    line-height: 0.8;
+    letter-spacing: 0.05em;
+    text-shadow: 
+        0 2px 4px rgba(245, 179, 192, 0.3),
+        0 4px 8px rgba(245, 179, 192, 0.2);
     animation: numberPulse 3s ease-in-out infinite;
+}
+
+.copy-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(252, 224, 229, 0.4) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    animation: numberGlow 3s ease-in-out infinite;
+}
+
+.copy-number::after {
+    content: '年';
+    position: absolute;
+    right: -28px;
+    bottom: 0;
+    font-size: 0.5em;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
 }
 
 @keyframes numberPulse {
     0%, 100% {
-        transform: scale(1);
-        filter: brightness(1);
+        transform: scale(1) translateY(0);
+        color: var(--accent-dark);
     }
     50% {
-        transform: scale(1.05);
-        filter: brightness(1.2);
+        transform: scale(1.05) translateY(-2px);
+        color: var(--accent-color);
+    }
+}
+
+@keyframes numberGlow {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.1);
     }
 }
 
