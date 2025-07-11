@@ -1,6 +1,6 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://link-u-cosme.com/lp?u=t67010_002_cie_ad_fb_002&sid=DfZsR3cHgDGcMscO&ct_bM3ce882r12M5da5=4576.288.365.DfZsR3cHgDGcMscO.365.DfZsR3cHgDGcMscO.DfZsR3cHgDGcMscO';
+const redirectUrl = 'https://link-u-cosme.com/lp?u=t67010_002_cie_ad_fb_002&sid=DfQ1TZ_HgDFZ_i3q&ct_bM3ce882r12M5da5=4576.288.365.DfQ1TZ_HgDFZ_i3q.365.DfQ1TZ_HgDFZ_i3q.DfQ1TZ_HgDFZ_i3q';
 
 // カスタムカーソルの初期化
 function initCursor() {
