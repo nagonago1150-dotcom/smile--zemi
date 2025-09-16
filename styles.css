@@ -907,11 +907,17 @@ body::after {
     .section {
         padding: 30px 0 50px 0;
     }
-    
+
     .container {
         padding: 0 20px;
     }
-    
+
+    .company-branding {
+        top: 10px;
+        left: 10px;
+        right: auto;
+    }
+
     .question-number {
         font-size: 80px;
         top: 20px;
