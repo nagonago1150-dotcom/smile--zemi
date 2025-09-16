@@ -88,7 +88,7 @@ function selectAnswer(questionNumber, answer) {
     button.style.background = 'var(--accent-gradient)';
     button.style.color = '#fff';
     button.style.transform = 'translateY(-2px)';
-    button.style.boxShadow = '0 8px 20px rgba(245, 179, 192, 0.3)';
+    button.style.boxShadow = '0 8px 20px rgba(220, 53, 69, 0.3)';';
     
     // リップルエフェクトを追加
     createRipple(button, event);
@@ -336,13 +336,13 @@ style.textContent = `
     
     @keyframes selectedPulse {
         0% {
-            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0.8);
+            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.8);
         }
         70% {
-            box-shadow: 0 0 0 30px rgba(245, 179, 192, 0);
+            box-shadow: 0 0 0 30px rgba(220, 53, 69, 0);
         }
         100% {
-            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0);
+            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
         }
     }
     
