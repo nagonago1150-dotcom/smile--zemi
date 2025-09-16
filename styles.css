@@ -575,7 +575,7 @@ body::after {
     line-height: 1.6;
     position: relative;
     z-index: 1;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .options {
@@ -591,7 +591,7 @@ body::after {
     backdrop-filter: var(--backdrop-blur);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 60px;
-    padding: 20px 40px;
+    padding: 20px 30px;
     font-size: 15px;
     font-weight: 400;
     font-family: 'Noto Sans JP', sans-serif;
@@ -604,7 +604,9 @@ body::after {
     letter-spacing: 0.05em;
     opacity: 0;
     animation: fadeInUp 0.6s ease-out forwards;
-    box-shadow: 
+    line-height: 1.4;
+    word-wrap: break-word;
+    box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.04),
         inset 0 0 0 1px rgba(255, 255, 255, 0.9),
         inset 0 0 40px rgba(255, 255, 255, 0.3),
@@ -894,21 +896,21 @@ body::after {
     .question-title {
         font-size: 16px;
         margin-bottom: 30px;
-        white-space: nowrap;
+        white-space: normal;
         line-height: 1.5;
         padding: 0 10px;
     }
     
     #section1 .question-title {
-        transform: scale(0.92);
+        transform: scale(1);
         letter-spacing: 0.02em;
     }
-    
+
     #section3 .question-title {
-        transform: scale(0.94);
+        transform: scale(1);
         letter-spacing: 0.03em;
     }
-    
+
     #section2 .question-title {
         white-space: normal;
         transform: scale(1);
@@ -948,18 +950,18 @@ body::after {
 @media (max-width: 480px) {
     .question-title {
         font-size: 14px;
-        white-space: nowrap;
+        white-space: normal;
     }
-    
+
     #section1 .question-title {
-        transform: scale(0.88);
+        transform: scale(1);
     }
-    
+
     #section3 .question-title {
-        transform: scale(0.9);
+        transform: scale(1);
         letter-spacing: 0.02em;
     }
-    
+
     #section2 .question-title {
         white-space: normal;
         transform: scale(1);
@@ -982,11 +984,11 @@ body::after {
 
 @media (max-width: 380px) {
     #section1 .question-title {
-        transform: scale(0.85);
+        transform: scale(1);
     }
-    
+
     #section3 .question-title {
-        transform: scale(0.87);
+        transform: scale(1);
         letter-spacing: 0.01em;
     }
     
