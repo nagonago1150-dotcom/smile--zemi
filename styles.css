@@ -285,29 +285,34 @@ body::after {
 }
 
 .company-branding {
-    margin-bottom: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin-bottom: 0;
     opacity: 0;
     animation: fadeInDown 0.8s ease-out 0.2s forwards;
+    z-index: 10;
 }
 
 .company-name {
     display: inline-block;
     font-family: 'Noto Sans JP', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 400;
     color: var(--text-secondary);
-    background: linear-gradient(135deg, rgba(252,250,251,0.8) 0%, rgba(226,179,196,0.2) 100%);
-    padding: 6px 16px;
+    background: linear-gradient(135deg, rgba(252,250,251,0.6) 0%, rgba(226,179,196,0.1) 100%);
+    padding: 4px 12px;
     border-radius: 20px;
-    border: 1px solid rgba(226, 179, 196, 0.3);
+    border: 1px solid rgba(226, 179, 196, 0.2);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     box-shadow:
-        0 4px 12px rgba(226, 179, 196, 0.15),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
+        0 2px 6px rgba(226, 179, 196, 0.08),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    opacity: 0.7;
 }
 
 .company-name::before {
@@ -317,8 +322,8 @@ body::after {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    animation: companyShine 3s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: companyShine 6s ease-in-out infinite;
 }
 
 @keyframes companyShine {
@@ -926,8 +931,8 @@ body::after {
     }
 
     .company-name {
-        font-size: 11px;
-        padding: 5px 14px;
+        font-size: 9px;
+        padding: 3px 10px;
     }
     
     .copy-line1 {
