@@ -68,18 +68,23 @@ function initCursor() {
 }
 
 function selectAnswer(questionNumber, answer) {
+    // 重複クリック防止
+    if (answers[`question${questionNumber}`]) {
+        return;
+    }
+    
     answers[`question${questionNumber}`] = answer;
     
     const button = event.target.closest('.option-button');
     const allButtons = button.parentElement.querySelectorAll('.option-button');
     
-    // 他のボタンをフェードアウト
+    // 全てのボタンを無効化
     allButtons.forEach(btn => {
+        btn.style.pointerEvents = 'none';
         if (btn !== button) {
-            btn.style.opacity = '0.4';
-            btn.style.transform = 'scale(0.98)';
-            btn.style.pointerEvents = 'none';
-            btn.style.filter = 'none';
+            btn.style.opacity = '0.3';
+            btn.style.transform = 'scale(0.95)';
+            btn.style.filter = 'grayscale(100%)';
         }
     });
     
@@ -87,24 +92,32 @@ function selectAnswer(questionNumber, answer) {
     button.classList.add('selected');
     button.style.background = 'var(--accent-gradient)';
     button.style.color = '#fff';
-    button.style.transform = 'translateY(-2px)';
-    button.style.boxShadow = '0 8px 20px rgba(220, 53, 69, 0.3)';';
+    button.style.transform = 'translateY(-3px) scale(1.02)';
+    button.style.boxShadow = '0 12px 30px rgba(220, 53, 69, 0.4)';
+    button.style.border = '2px solid #fff';
     
     // リップルエフェクトを追加
     createRipple(button, event);
     
     // 振動フィードバック（対応デバイスのみ）
     if (navigator.vibrate) {
-        navigator.vibrate(50);
+        navigator.vibrate([50, 30, 50]);
     }
     
+    // 即座に次の質問に移行（遅延を短縮）
     setTimeout(() => {
-        if (questionNumber < 3) {
-            showNextQuestion();
-        } else {
-            showLoading();
+        try {
+            if (questionNumber < 3) {
+                showNextQuestion();
+            } else {
+                showLoading();
+            }
+        } catch (error) {
+            console.error('遷移エラー:', error);
+            // フォールバック: 強制リロードして次のセクションを表示
+            location.reload();
         }
-    }, 800);
+    }, 600);
 }
 
 function createRipple(button, event) {
@@ -128,21 +141,41 @@ function createRipple(button, event) {
 }
 
 function showNextQuestion() {
+    console.log('次の質問へ移行開始:', currentQuestion + 1);
+    
     const currentSection = document.querySelector('.section.active');
+    if (!currentSection) {
+        console.error('現在のアクティブセクションが見つかりません');
+        return;
+    }
+    
     const container = currentSection.querySelector('.container');
+    if (!container) {
+        console.error('コンテナが見つかりません');
+        return;
+    }
     
     // コンテナをフェードアウト
-    container.style.transform = 'translateX(-20px)';
+    container.style.transition = 'all 0.4s ease';
+    container.style.transform = 'translateX(-30px)';
     container.style.opacity = '0';
     currentSection.classList.add('fade-out');
     
     setTimeout(() => {
-        currentSection.classList.remove('active', 'fade-out');
-        currentQuestion++;
-        const nextSection = document.getElementById(`section${currentQuestion}`);
-        
-        // 質問番号を追加
-        addQuestionNumber(nextSection, currentQuestion);
+        try {
+            currentSection.classList.remove('active', 'fade-out');
+            currentQuestion++;
+            const nextSection = document.getElementById(`section${currentQuestion}`);
+            
+            if (!nextSection) {
+                console.error(`セクション${currentQuestion}が見つかりません`);
+                return;
+            }
+            
+            console.log(`セクション${currentQuestion}を表示`);
+            
+            // 質問番号を追加
+            addQuestionNumber(nextSection, currentQuestion);
         
         // プログレスバーのアニメーション
         const progressFill = nextSection.querySelector('.progress-fill');

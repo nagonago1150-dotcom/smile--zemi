@@ -95,6 +95,37 @@ body::after {
     pointer-events: none;
 }
 
+@keyframes cursorPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes followerPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes hoverPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(2.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(2.5);
+    }
+}
+
 @keyframes sparkle {
     to {
         background-position: 200px 0, 240px 60px, 330px 270px, 270px 100px;
@@ -104,50 +135,53 @@ body::after {
 /* カスタムカーソル */
 .cursor {
     position: fixed;
-    width: 24px;
-    height: 24px;
-    border: 3px solid var(--accent-color);
-    background: rgba(220, 53, 69, 0.3);
+    width: 30px;
+    height: 30px;
+    border: 4px solid #ff0000;
+    background: rgba(255, 0, 0, 0.8);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     box-shadow: 
-        0 0 30px rgba(220, 53, 69, 0.8),
-        inset 0 0 15px rgba(255, 255, 255, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.8);
-    transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+        0 0 50px rgba(255, 0, 0, 1.0),
+        0 0 0 3px rgba(255, 255, 255, 1.0),
+        0 0 0 6px rgba(0, 0, 0, 0.8);
+    transition: all 0.1s ease;
     will-change: left, top;
-    mix-blend-mode: difference;
+    animation: cursorPulse 2s infinite ease-in-out;
 }
 
 .cursor-follower {
     position: fixed;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, rgba(220, 53, 69, 0.4) 0%, rgba(220, 53, 69, 0.2) 40%, transparent 70%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.6) 0%, rgba(255, 0, 0, 0.3) 40%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    filter: blur(6px);
-    transition: opacity 0.3s ease;
+    filter: blur(8px);
+    transition: all 0.2s ease;
     will-change: left, top;
+    animation: followerPulse 2.5s infinite ease-in-out;
 }
 
 .cursor.cursor-hover {
-    border-color: var(--accent-dark);
-    background: rgba(220, 53, 69, 0.6);
-    transform: translate(-50%, -50%) scale(1.8);
+    border-color: #ffff00;
+    background: rgba(255, 255, 0, 0.9);
+    transform: translate(-50%, -50%) scale(2.2);
     box-shadow: 
-        0 0 40px rgba(220, 53, 69, 1.0),
-        inset 0 0 20px rgba(255, 255, 255, 0.6),
-        0 0 0 2px rgba(255, 255, 255, 1.0);
+        0 0 60px rgba(255, 255, 0, 1.0),
+        0 0 0 4px rgba(255, 255, 255, 1.0),
+        0 0 0 8px rgba(0, 0, 0, 1.0);
+    animation: hoverPulse 0.8s infinite ease-in-out;
 }
 
 .cursor-follower.cursor-hover {
-    transform: translate(-50%, -50%) scale(1.5);
-    background: radial-gradient(circle, rgba(220, 53, 69, 0.7) 0%, rgba(220, 53, 69, 0.3) 40%, transparent 70%);
+    transform: translate(-50%, -50%) scale(2.0);
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.8) 0%, rgba(255, 255, 0, 0.4) 40%, transparent 70%);
+    filter: blur(12px);
 }
 
 #app {
