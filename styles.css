@@ -6,26 +6,26 @@
 
 :root {
     --primary-color: #ffffff;
-    --accent-color: #fce0e5;
-    --accent-light: #fff5f7;
-    --accent-dark: #f5b3c0;
-    --accent-gradient: linear-gradient(135deg, #fff0f3 0%, #fce0e5 50%, #f5b3c0 100%);
-    --premium-gradient: linear-gradient(135deg, #fafcff 0%, #f5f9ff 25%, #fff5f8 75%, #fce0e5 100%);
-    --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(252,224,229,0.3) 100%);
-    --shine-gradient: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%);
-    --text-primary: #2c2c2c;
-    --text-secondary: #5a5a5a;
-    --border-color: rgba(255, 255, 255, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --shadow-light: 0 10px 40px rgba(252, 224, 229, 0.3);
-    --shadow-medium: 0 20px 60px rgba(252, 224, 229, 0.4);
-    --shadow-glow: 0 0 80px rgba(252, 224, 229, 0.6);
+    --accent-color: #ffb3c1;
+    --accent-light: #ffe8ed;
+    --accent-dark: #e6799c;
+    --accent-gradient: linear-gradient(135deg, #ffe8ed 0%, #ffb3c1 50%, #e6799c 100%);
+    --premium-gradient: linear-gradient(135deg, #fff0f6 0%, #ffe8ed 25%, #ffb3c1 75%, #e6799c 100%);
+    --glass-gradient: linear-gradient(135deg, rgba(255,240,246,0.9) 0%, rgba(255,232,237,0.7) 50%, rgba(255,179,193,0.4) 100%);
+    --shine-gradient: linear-gradient(45deg, transparent 30%, rgba(255,179,193,0.6) 50%, transparent 70%);
+    --text-primary: #2c1a1a;
+    --text-secondary: #5a3a3a;
+    --border-color: rgba(255, 179, 193, 0.4);
+    --glass-bg: rgba(255, 240, 246, 0.85);
+    --shadow-light: 0 10px 40px rgba(255, 179, 193, 0.4);
+    --shadow-medium: 0 20px 60px rgba(255, 179, 193, 0.5);
+    --shadow-glow: 0 0 80px rgba(255, 179, 193, 0.7);
     --backdrop-blur: blur(20px);
 }
 
 body {
     font-family: 'Noto Sans JP', 'Cormorant Garamond', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #fafcff;
+    background: linear-gradient(135deg, #fff0f6 0%, #ffe8ed 100%);
     color: var(--text-primary);
     line-height: 1.8;
     overflow-x: hidden;
@@ -54,11 +54,11 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(ellipse at top left, rgba(252, 224, 229, 0.4) 0%, transparent 40%),
-        radial-gradient(ellipse at top right, rgba(230, 240, 255, 0.4) 0%, transparent 40%),
-        radial-gradient(ellipse at bottom left, rgba(255, 240, 245, 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at bottom right, rgba(240, 248, 255, 0.3) 0%, transparent 40%);
+    background:
+        radial-gradient(ellipse at top left, rgba(255, 179, 193, 0.5) 0%, transparent 40%),
+        radial-gradient(ellipse at top right, rgba(255, 153, 179, 0.4) 0%, transparent 40%),
+        radial-gradient(ellipse at bottom left, rgba(255, 204, 217, 0.4) 0%, transparent 40%),
+        radial-gradient(ellipse at bottom right, rgba(255, 128, 170, 0.3) 0%, transparent 40%);
     opacity: 0.8;
     z-index: 0;
     animation: watercolor 20s ease-in-out infinite;
@@ -83,11 +83,11 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.8), transparent);
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,179,193,0.9), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(255,153,179,0.8), transparent),
+        radial-gradient(1px 1px at 90% 10%, rgba(255,204,217,0.9), transparent),
+        radial-gradient(1px 1px at 15% 80%, rgba(255,128,170,0.8), transparent);
     background-size: 200px 200px;
     background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
     animation: sparkle 10s linear infinite;
@@ -107,14 +107,14 @@ body::after {
     width: 20px;
     height: 20px;
     border: 2px solid var(--accent-dark);
-    background: rgba(252, 224, 229, 0.2);
+    background: rgba(255, 179, 193, 0.3);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    box-shadow: 
-        0 0 20px rgba(252, 224, 229, 0.6),
-        inset 0 0 10px rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 0 25px rgba(255, 179, 193, 0.7),
+        inset 0 0 12px rgba(255, 204, 217, 0.4);
     transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
     will-change: left, top;
 }
@@ -123,7 +123,7 @@ body::after {
     position: absolute;
     width: 40px;
     height: 40px;
-    background: radial-gradient(circle, rgba(252, 224, 229, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 179, 193, 0.5) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
@@ -135,13 +135,13 @@ body::after {
 
 .cursor.cursor-hover {
     border-color: var(--accent-color);
-    background: rgba(252, 224, 229, 0.4);
+    background: rgba(255, 179, 193, 0.5);
     transform: translate(-50%, -50%) scale(1.5);
 }
 
 .cursor-follower.cursor-hover {
     transform: translate(-50%, -50%) scale(1.2);
-    background: radial-gradient(circle, rgba(252, 224, 229, 0.6) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 179, 193, 0.7) 0%, transparent 70%);
 }
 
 #app {
@@ -199,7 +199,7 @@ body::after {
     font-family: 'Cormorant Garamond', serif;
     line-height: 1;
     z-index: 1;
-    background: linear-gradient(135deg, rgba(252, 224, 229, 0.2), rgba(252, 224, 229, 0.4));
+    background: linear-gradient(135deg, rgba(255, 179, 193, 0.2), rgba(255, 179, 193, 0.4));
     -webkit-background-clip: text;
     background-clip: text;
     animation: numberGlow 3s ease-in-out infinite;
@@ -207,10 +207,10 @@ body::after {
 
 @keyframes numberGlow {
     0%, 100% {
-        filter: drop-shadow(0 0 20px rgba(252, 224, 229, 0.5));
+        filter: drop-shadow(0 0 25px rgba(255, 179, 193, 0.6));
     }
     50% {
-        filter: drop-shadow(0 0 40px rgba(252, 224, 229, 0.8));
+        filter: drop-shadow(0 0 40px rgba(255, 179, 193, 0.8));
     }
 }
 
@@ -229,7 +229,7 @@ body::after {
         0 30px 80px rgba(0, 0, 0, 0.08),
         0 0 0 1px rgba(255, 255, 255, 0.9),
         inset 0 0 30px rgba(255, 255, 255, 0.5),
-        0 0 120px rgba(252, 224, 229, 0.4);
+        0 0 120px rgba(255, 179, 193, 0.4);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: floatImage 8s ease-in-out infinite;
     position: relative;
@@ -274,7 +274,7 @@ body::after {
     box-shadow: 
         0 40px 100px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(255, 255, 255, 1),
-        0 0 150px rgba(252, 224, 229, 0.6);
+        0 0 150px rgba(255, 179, 193, 0.6);
 }
 
 .main-copy-container {
@@ -303,7 +303,7 @@ body::after {
     animation: fadeInRight 0.8s ease-out 0.6s forwards;
     color: var(--text-primary);
     text-shadow: 
-        0 4px 16px rgba(252, 224, 229, 0.6),
+        0 4px 16px rgba(255, 179, 193, 0.6),
         0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
     line-height: 1.2;
@@ -320,7 +320,7 @@ body::after {
     background: linear-gradient(90deg, transparent, var(--accent-dark), var(--accent-color), transparent);
     opacity: 0;
     animation: fadeIn 1s ease-out 1.2s forwards;
-    box-shadow: 0 2px 8px rgba(245, 179, 192, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 179, 193, 0.4);
 }
 
 .copy-line2 {
@@ -403,16 +403,16 @@ body::after {
     height: 6px;
     background: var(--accent-dark);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(245, 179, 192, 0.6);
+    box-shadow: 0 0 10px rgba(255, 179, 193, 0.6);
     animation: dotGlow 2s ease-in-out infinite;
 }
 
 @keyframes dotGlow {
     0%, 100% {
-        box-shadow: 0 0 10px rgba(245, 179, 192, 0.6);
+        box-shadow: 0 0 10px rgba(255, 179, 193, 0.6);
     }
     50% {
-        box-shadow: 0 0 20px rgba(245, 179, 192, 0.9);
+        box-shadow: 0 0 20px rgba(255, 179, 193, 0.9);
     }
 }
 
@@ -480,23 +480,23 @@ body::after {
 .progress-track {
     width: 100%;
     height: 8px;
-    background: linear-gradient(90deg, rgba(252, 224, 229, 0.1), rgba(252, 224, 229, 0.2));
+    background: linear-gradient(90deg, rgba(255, 179, 193, 0.1), rgba(255, 179, 193, 0.2));
     border-radius: 100px;
     overflow: hidden;
     position: relative;
     box-shadow: 
         inset 0 2px 4px rgba(0, 0, 0, 0.05),
-        0 0 20px rgba(252, 224, 229, 0.2);
+        0 0 20px rgba(255, 179, 193, 0.2);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #fce0e5 0%, #f5b3c0 50%, #fce0e5 100%);
+    background: linear-gradient(90deg, #ffb3c1 0%, #e6799c 50%, #ffb3c1 100%);
     background-size: 200% 100%;
     border-radius: 100px;
     transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
     position: relative;
-    box-shadow: 0 0 20px rgba(245, 179, 192, 0.6);
+    box-shadow: 0 0 20px rgba(255, 179, 193, 0.6);
     animation: gradientFlow 3s ease infinite;
 }
 
@@ -538,7 +538,7 @@ body::after {
         0 20px 60px rgba(0, 0, 0, 0.05),
         inset 0 0 0 1px rgba(255, 255, 255, 0.9),
         inset 0 0 80px rgba(255, 255, 255, 0.5),
-        0 0 100px rgba(252, 224, 229, 0.3);
+        0 0 100px rgba(255, 179, 193, 0.3);
     border: 1px solid var(--border-color);
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
@@ -608,7 +608,7 @@ body::after {
         0 8px 32px rgba(0, 0, 0, 0.04),
         inset 0 0 0 1px rgba(255, 255, 255, 0.9),
         inset 0 0 40px rgba(255, 255, 255, 0.3),
-        0 0 60px rgba(252, 224, 229, 0.2);
+        0 0 60px rgba(255, 179, 193, 0.2);
 }
 
 .option-button::before {
@@ -643,9 +643,9 @@ body::after {
     box-shadow: 
         0 12px 40px rgba(0, 0, 0, 0.08),
         inset 0 0 0 1px rgba(255, 255, 255, 1),
-        inset 0 0 60px rgba(252, 224, 229, 0.3),
-        0 0 80px rgba(252, 224, 229, 0.4);
-    border-color: rgba(252, 224, 229, 0.5);
+        inset 0 0 60px rgba(255, 179, 193, 0.3),
+        0 0 80px rgba(255, 179, 193, 0.4);
+    border-color: rgba(255, 179, 193, 0.5);
     background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, rgba(252,224,229,0.4) 100%);
 }
 
@@ -700,7 +700,7 @@ body::after {
     position: relative;
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 20px rgba(252, 224, 229, 0.5));
+    filter: drop-shadow(0 0 25px rgba(255, 179, 193, 0.6));
 }
 
 .ripple {
@@ -803,13 +803,13 @@ body::after {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(252, 224, 229, 0.6) 100%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 179, 193, 0.6) 100%);
     border-radius: 50%;
     opacity: 0;
     animation: float linear infinite;
     box-shadow: 
         0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 20px rgba(252, 224, 229, 0.6);
+        0 0 20px rgba(255, 179, 193, 0.6);
 }
 
 @keyframes float {
@@ -835,18 +835,18 @@ body::after {
     background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 50%, var(--accent-dark) 100%) !important;
     color: #fff !important;
     box-shadow: 
-        0 12px 40px rgba(245, 179, 192, 0.4),
+        0 12px 40px rgba(255, 179, 193, 0.4),
         inset 0 0 0 1px rgba(255, 255, 255, 0.9),
         inset 0 0 60px rgba(255, 255, 255, 0.3),
-        0 0 100px rgba(252, 224, 229, 0.5) !important;
+        0 0 100px rgba(255, 179, 193, 0.5) !important;
 }
 
 @keyframes selectedGlow {
     0% {
-        box-shadow: 0 0 0 0 rgba(252, 224, 229, 0.8);
+        box-shadow: 0 0 0 0 rgba(255, 179, 193, 0.8);
     }
     100% {
-        box-shadow: 0 0 0 40px rgba(252, 224, 229, 0);
+        box-shadow: 0 0 0 40px rgba(255, 179, 193, 0);
     }
 }
 
