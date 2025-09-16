@@ -284,6 +284,52 @@ body::after {
     animation: fadeInUp 1s ease-out 0.3s forwards;
 }
 
+.company-branding {
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out 0.2s forwards;
+}
+
+.company-name {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(255,250,252,0.8) 0%, rgba(248,194,208,0.2) 100%);
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(248, 194, 208, 0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 4px 12px rgba(248, 194, 208, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.company-name::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: companyShine 3s ease-in-out infinite;
+}
+
+@keyframes companyShine {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
 
 .main-copy {
     font-family: 'Noto Serif JP', 'Cormorant Garamond', serif;
@@ -877,6 +923,11 @@ body::after {
     
     .main-copy-container {
         margin-bottom: 40px;
+    }
+
+    .company-name {
+        font-size: 11px;
+        padding: 5px 14px;
     }
     
     .copy-line1 {
