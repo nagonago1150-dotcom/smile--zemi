@@ -1,6 +1,6 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://ac-ld.catsys.jp/35cdb41fDc62db0D/cl/?bId=d69VVc9e';
+const redirectUrl = 'https://lp.yamasa-suppon.com/adri_sp_500_uruhada_afdf07?cats_not_organic=true#anchor-01';
 
 // カスタムカーソルの初期化
 function initCursor() {
@@ -68,23 +68,18 @@ function initCursor() {
 }
 
 function selectAnswer(questionNumber, answer) {
-    // 重複クリック防止
-    if (answers[`question${questionNumber}`]) {
-        return;
-    }
-    
     answers[`question${questionNumber}`] = answer;
     
     const button = event.target.closest('.option-button');
     const allButtons = button.parentElement.querySelectorAll('.option-button');
     
-    // 全てのボタンを無効化
+    // 他のボタンをフェードアウト
     allButtons.forEach(btn => {
-        btn.style.pointerEvents = 'none';
         if (btn !== button) {
-            btn.style.opacity = '0.3';
-            btn.style.transform = 'scale(0.95)';
-            btn.style.filter = 'grayscale(100%)';
+            btn.style.opacity = '0.4';
+            btn.style.transform = 'scale(0.98)';
+            btn.style.pointerEvents = 'none';
+            btn.style.filter = 'none';
         }
     });
     
@@ -92,32 +87,24 @@ function selectAnswer(questionNumber, answer) {
     button.classList.add('selected');
     button.style.background = 'var(--accent-gradient)';
     button.style.color = '#fff';
-    button.style.transform = 'translateY(-3px) scale(1.02)';
-    button.style.boxShadow = '0 12px 30px rgba(220, 53, 69, 0.4)';
-    button.style.border = '2px solid #fff';
+    button.style.transform = 'translateY(-2px)';
+    button.style.boxShadow = '0 8px 20px rgba(245, 179, 192, 0.3)';
     
     // リップルエフェクトを追加
     createRipple(button, event);
     
     // 振動フィードバック（対応デバイスのみ）
     if (navigator.vibrate) {
-        navigator.vibrate([50, 30, 50]);
+        navigator.vibrate(50);
     }
     
-    // 即座に次の質問に移行（遅延を短縮）
     setTimeout(() => {
-        try {
-            if (questionNumber < 3) {
-                showNextQuestion();
-            } else {
-                showLoading();
-            }
-        } catch (error) {
-            console.error('遷移エラー:', error);
-            // フォールバック: 強制リロードして次のセクションを表示
-            location.reload();
+        if (questionNumber < 3) {
+            showNextQuestion();
+        } else {
+            showLoading();
         }
-    }, 600);
+    }, 800);
 }
 
 function createRipple(button, event) {
@@ -141,41 +128,21 @@ function createRipple(button, event) {
 }
 
 function showNextQuestion() {
-    console.log('次の質問へ移行開始:', currentQuestion + 1);
-    
     const currentSection = document.querySelector('.section.active');
-    if (!currentSection) {
-        console.error('現在のアクティブセクションが見つかりません');
-        return;
-    }
-    
     const container = currentSection.querySelector('.container');
-    if (!container) {
-        console.error('コンテナが見つかりません');
-        return;
-    }
     
     // コンテナをフェードアウト
-    container.style.transition = 'all 0.4s ease';
-    container.style.transform = 'translateX(-30px)';
+    container.style.transform = 'translateX(-20px)';
     container.style.opacity = '0';
     currentSection.classList.add('fade-out');
     
     setTimeout(() => {
-        try {
-            currentSection.classList.remove('active', 'fade-out');
-            currentQuestion++;
-            const nextSection = document.getElementById(`section${currentQuestion}`);
-            
-            if (!nextSection) {
-                console.error(`セクション${currentQuestion}が見つかりません`);
-                return;
-            }
-            
-            console.log(`セクション${currentQuestion}を表示`);
-            
-            // 質問番号を追加
-            addQuestionNumber(nextSection, currentQuestion);
+        currentSection.classList.remove('active', 'fade-out');
+        currentQuestion++;
+        const nextSection = document.getElementById(`section${currentQuestion}`);
+        
+        // 質問番号を追加
+        addQuestionNumber(nextSection, currentQuestion);
         
         // プログレスバーのアニメーション
         const progressFill = nextSection.querySelector('.progress-fill');
@@ -369,13 +336,13 @@ style.textContent = `
     
     @keyframes selectedPulse {
         0% {
-            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.8);
+            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0.8);
         }
         70% {
-            box-shadow: 0 0 0 30px rgba(220, 53, 69, 0);
+            box-shadow: 0 0 0 30px rgba(245, 179, 192, 0);
         }
         100% {
-            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+            box-shadow: 0 0 0 0 rgba(245, 179, 192, 0);
         }
     }
     
