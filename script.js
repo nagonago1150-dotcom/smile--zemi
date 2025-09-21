@@ -1,6 +1,6 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://lp.yamasa-suppon.com/adri_sp_500_uruhada_afdf07?cats_not_organic=true#anchor-01';
+const redirectUrl = 'https://lll-shop.com/lp?u=BF013_ft_500_12558_15d_dd_gdn_001#chatform';
 
 // カスタムカーソルの初期化
 function initCursor() {
