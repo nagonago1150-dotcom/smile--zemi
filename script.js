@@ -1,6 +1,6 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://ac-ld.catsys.jp/35cdb41fDc62db0D/cl/?bId=d69VVc9e';
+const redirectUrl = 'https://lll-shop.com/lp?u=BF013_ft_500_12558_15d_dd_gdn_001#chatform';
 
 // カスタムカーソルの初期化
 function initCursor() {
