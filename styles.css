@@ -347,6 +347,11 @@ body::after {
     font-style: italic;
 }
 
+/* PC版では改行を非表示 */
+.mobile-break {
+    display: none;
+}
+
 
 @keyframes numberPulse {
     0%, 100% {
@@ -909,6 +914,11 @@ body::after {
     .copy-line3 {
         font-size: 12px;
         margin-top: 6px;
+    }
+
+    /* スマホ版で改行を表示 */
+    .mobile-break {
+        display: inline;
     }
     
     .copy-decoration {
