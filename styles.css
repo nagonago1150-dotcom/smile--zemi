@@ -947,22 +947,17 @@ body::after {
 
 @media (max-width: 480px) {
     .question-title {
-        font-size: 14px;
-        white-space: nowrap;
-    }
-    
-    #section1 .question-title {
-        transform: scale(0.88);
-    }
-    
-    #section3 .question-title {
-        transform: scale(0.9);
-        letter-spacing: 0.02em;
-    }
-    
-    #section2 .question-title {
+        font-size: 16px;
         white-space: normal;
+        line-height: 1.4;
+    }
+
+    #section1 .question-title,
+    #section2 .question-title,
+    #section3 .question-title {
         transform: scale(1);
+        white-space: normal;
+        letter-spacing: 0.02em;
     }
     
     .question-area {
@@ -981,13 +976,21 @@ body::after {
 }
 
 @media (max-width: 380px) {
-    #section1 .question-title {
-        transform: scale(0.85);
+    .question-title {
+        font-size: 15px;
     }
-    
+
+    #section1 .question-title,
+    #section2 .question-title,
     #section3 .question-title {
-        transform: scale(0.87);
+        transform: scale(1);
         letter-spacing: 0.01em;
+    }
+
+    .option-button {
+        padding: 16px 20px;
+        font-size: 13px;
+        min-height: 50px;
     }
     
     .thank-you {
@@ -1042,8 +1045,13 @@ body::after {
     }
     
     .option-button {
-        padding: 16px 35px;
+        padding: 18px 25px;
         font-size: 14px;
+        line-height: 1.3;
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .options {
