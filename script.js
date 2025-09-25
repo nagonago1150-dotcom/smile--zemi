@@ -1,6 +1,6 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://lll-shop.com/lp?u=BF013_ft_500_12558_15d_dd_gdn_001#chatform';
+const redirectUrl = 'https://smile-zemi.jp/shogaku/lp/compare3/';
 
 // カスタムカーソルの初期化
 function initCursor() {
