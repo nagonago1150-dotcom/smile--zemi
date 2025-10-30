@@ -1,6 +1,22 @@
 let currentQuestion = 1;
 const answers = {};
-const redirectUrl = 'https://smile-zemi.jp/shogaku/lp/compare3/';
+
+// 派生URLと販売リンクのマッピング
+const urlMappings = {
+    '/1': 'https://sf-system.jp/link.php?i=pi5vkn4dfnfo&m=mi41q4mbpxi9',
+    '/2': 'https://sf-system.jp/link.php?i=pi5vkn4dfnfo&m=mi6fo2rk9rpd',
+    '/3': 'https://sf-system.jp/link.php?i=pi5vkn4dfnfo&m=mi6fo3bj5gfr',
+    '/4': 'https://sf-system.jp/link.php?i=pi5vkn4dfnfo&m=mi6fo3sxn5jm'
+};
+
+// 現在のパスに対応するリダイレクトURLを取得
+function getRedirectUrl() {
+    const currentPath = window.location.pathname;
+    // パスに対応するURLがあればそれを返し、なければデフォルトURL
+    return urlMappings[currentPath] || 'https://smile-zemi.jp/shogaku/lp/compare3/';
+}
+
+const redirectUrl = getRedirectUrl();
 
 // カスタムカーソルの初期化
 function initCursor() {
@@ -253,13 +269,19 @@ function updateCursorEvents() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // 商品リンクを動的に設定
+    const productLink = document.getElementById('product-link');
+    if (productLink) {
+        productLink.href = redirectUrl;
+    }
+
     // カスタムカーソルの初期化
     if (window.matchMedia('(pointer: fine)').matches) {
         initCursor();
     } else {
         document.body.style.cursor = 'auto';
     }
-    
+
     // 最初の質問番号を追加
     const firstSection = document.querySelector('.section.active');
     addQuestionNumber(firstSection, 1);
